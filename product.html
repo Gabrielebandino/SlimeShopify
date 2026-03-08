@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIME | Product</title>
+    <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
+</head>
+<body>
+    <shopify-store store-domain="slime-resell.myshopify.com" public-access-token="8989149ca1282e74af5ebf3bdc79b5a4">
+        
+        <header id="main-header"></header>
+
+        <main id="app">
+            <shopify-context type="product" handle="hoodie" id="main-product-context">
+                <template>
+                    <div class="product-page-layout">
+                        <!-- Left Side: Large image with gradient fade -->
+                        <div class="product-page-media-container">
+                            <div class="product-page-media-fade"></div>
+                            <shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
+                        </div>
+
+                        <!-- Right Side: Details -->
+                        <div class="product-page-details-container container">
+                            <h1 class="product-page-title">
+                                <shopify-data query="product.title"></shopify-data>
+                            </h1>
+                            <div class="product-page-price">
+                                <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
+                            </div>
+                            
+                            <div class="product-page-description">
+                                <shopify-data query="product.descriptionHtml"></shopify-data>
+                            </div>
+
+                            <div class="product-page-variants">
+                                <shopify-variant-selector></shopify-variant-selector>
+                            </div>
+
+                            <button class="product-add-to-cart" onclick="document.getElementById('main-cart').addLine(event).showModal();" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </template>
+                <div shopify-loading-placeholder style="height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Inter';">Loading product details...</div>
+            </shopify-context>
+        </main>
+        
+    </shopify-store>
+
+    <script type="module" src="/main.js"></script>
+    <script type="module" src="/components/product-utils.js"></script>
+</body>
+</html>

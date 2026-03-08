@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIME | Book Appointment</title>
+    <script type="module" src="https://cdn.shopify.com/storefront/web-components.js"></script>
+</head>
+<body>
+    <shopify-store store-domain="slime-resell.myshopify.com" public-access-token="8989149ca1282e74af5ebf3bdc79b5a4">
+        
+        <header id="main-header"></header>
+
+        <main id="app">
+            <div class="appointment-page">
+                <div class="appointment-hero">
+                    <img src="/assets/store_placeholder.jpg" alt="SLIME Store" style="object-fit: cover; width: 100%; height: 100%; background-color: var(--secondary-muted-green);" />
+                    <div class="appointment-overlay">
+                        <h1>Exclusive Access.</h1>
+                        <p>Book a private viewing appointment at our flagship.</p>
+                    </div>
+                </div>
+                
+                <div class="appointment-form-container container">
+                    <form class="appointment-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Name</label>
+                                <input type="text" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Surname</label>
+                                <input type="text" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="requests">Special Requests (Brands, Sizes, Items)</label>
+                            <textarea id="requests" name="requests" rows="4"></textarea>
+                        </div>
+
+                        <button type="submit" class="appointment-submit" onclick="event.preventDefault(); alert('Request submitted successfully. We will contact you soon.');">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+        
+    </shopify-store>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
