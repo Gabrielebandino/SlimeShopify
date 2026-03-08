@@ -147,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="product-price-row">
                   <div class="product-price-custom">
                     <span class="price-from">FROM</span>
-                    <span class="price-amount">${formatter.format(priceNum)}</span>
+                    <span class="price-amount">${formatter.format(priceNum).replace(/\.00$/, '')}</span>
                   </div>
                 </div>
               </div>

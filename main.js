@@ -70,8 +70,12 @@ document.addEventListener('DOMContentLoaded', () => {
           } else {
             subEl.style.display = 'none';
           }
-          titleContainer.dataset.parsed = 'true';
         }
+      }
+
+      // Strip trailing .00 from shopify-money component text if we can safely do so
+      if (text.includes('.00')) {
+        moneyComp.textContent = text.replace(/\.00/g, '');
       }
     });
   };

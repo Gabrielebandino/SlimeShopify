@@ -366,6 +366,7 @@ shopify-cart::part(secondary-button) {
   }
 }
 
+/* Apple-style macOS Frosted Glass styling */
 .product-card {
   display: flex;
   flex-direction: column;
@@ -375,8 +376,7 @@ shopify-cart::part(secondary-button) {
   border-radius: 20px;
   overflow: hidden;
   color: #fff;
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-  /* Anti-aliasing text on busy backgrounds */
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -388,7 +388,7 @@ shopify-cart::part(secondary-button) {
   }
 }
 
-/* Base metallic gradient & frame using pseudo-elements */
+/* Glass Shell Layer 1: Ambient Base Color Mixing & Glows */
 .product-card::before {
   content: "";
   position: absolute;
@@ -398,18 +398,24 @@ shopify-cart::part(secondary-button) {
   z-index: 1;
 }
 
-/* Apple-style frosted glass layer overlay */
+/* Glass Shell Layer 2: Apple Authentic Frosted Lens 
+   Mixes heavy blur, semi-transparent white wash, edge noise simulation, and a bright top specular line 
+*/
 .product-card::after {
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0; bottom: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.06) 100%);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: 
+    linear-gradient(145deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 50%, rgba(255, 255, 255, 0.08) 100%);
+  backdrop-filter: blur(28px) saturate(140%);
+  -webkit-backdrop-filter: blur(28px) saturate(140%);
+  box-shadow: 
+    inset 0 1px 1px rgba(255, 255, 255, 0.45), /* Strong top specular rim */
+    inset 0 0 1px rgba(255, 255, 255, 0.25);   /* Thin all-around inner structural rim */
+  border: 1px solid rgba(255, 255, 255, 0.15); /* Physical bounding rim */
   pointer-events: none;
   z-index: 2;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
 }
 
 .product-image-wrapper {
@@ -477,9 +483,11 @@ shopify-cart::part(secondary-button) {
   letter-spacing: 0.5px;
   margin: 0;
   color: #fff;
-  white-space: nowrap;
+  line-height: 1.1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .product-title-sub {
@@ -489,9 +497,11 @@ shopify-cart::part(secondary-button) {
   margin: 0;
   color: rgba(255,255,255,0.95);
   text-shadow: 1px 1px 2px rgba(0,0,0,0.8);
-  white-space: nowrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .product-price-row {
@@ -574,26 +584,40 @@ shopify-cart::part(secondary-button) {
   --tier-glow: rgba(216, 178, 74, 0.26);
 }
 
-/* -- HYBRID TIER STYLING APPLICATION -- */
+/* -- HYBRID TIER STYLING APPLICATION: Glass + Metal Integration -- */
+/* 
+  The metallic aspect lives purely in the base background layer (behind the blur).
+  Apple glass needs a solid base to blur over. We mix dark space-grey with the tier tint.
+*/
 [data-price-tier] {
-  background: linear-gradient(160deg, color-mix(in srgb, var(--tier-primary) 15%, #1e1e22) 0%, rgba(30,30,34,0.92) 48%, color-mix(in srgb, var(--tier-secondary) 25%, #18181A) 100%);
-  border: 1px solid rgba(255,255,255,0.16);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.6), 0 0 20px var(--tier-glow);
+  background: linear-gradient(
+    165deg, 
+    color-mix(in srgb, var(--tier-primary) 18%, #1c1c1e) 0%, 
+    rgba(22, 22, 24, 0.95) 45%, 
+    color-mix(in srgb, var(--tier-secondary) 25%, #151516) 100%
+  );
+  /* The drop box-shadow of the whole card element simulating glass volume */
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.6), 
+    0 2px 16px 0 var(--tier-glow);
 }
 
 [data-price-tier]::before {
-  /* Inner Frame Specular Highlights */
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--tier-primary) 40%, rgba(255,255,255,0.15)), 
-              inset 0 2px 12px color-mix(in srgb, var(--tier-secondary) 30%, transparent);
+  /* Inner Frame Specular Highlights specific to the metallic shell underneath the glass pane */
+  box-shadow: 
+    inset 0 0 0 1px color-mix(in srgb, var(--tier-primary) 20%, transparent), 
+    inset 0 2px 24px color-mix(in srgb, var(--tier-secondary) 25%, transparent);
 }
 
 @media (hover: hover) {
   [data-price-tier]:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 35px rgba(0,0,0,0.8), 0 0 30px color-mix(in srgb, var(--tier-glow) 60%, transparent);
+    transform: translateY(-4px) scale(1.01);
+    box-shadow: 
+      0 16px 40px rgba(0,0,0,0.8), 
+      0 0 32px color-mix(in srgb, var(--tier-glow) 70%, transparent);
   }
   [data-price-tier]:hover .price-amount {
-    filter: brightness(1.15);
+    filter: brightness(1.15) saturate(1.2);
   }
 }
 @media (hover: none) {
