@@ -267,11 +267,11 @@ shopify-cart::part(secondary-button) {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 20vh;
+  height: 12vh;
   /* Authentic Liquid Glass Progressive Blur via masking the filter itself */
   background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(20,20,20,0.1) 50%, rgba(0,0,0,0.8) 100%);
-  backdrop-filter: blur(12px) saturate(140%);
-  -webkit-backdrop-filter: blur(12px) saturate(140%);
+  backdrop-filter: blur(6px) saturate(140%);
+  -webkit-backdrop-filter: blur(6px) saturate(140%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
   pointer-events: none;
@@ -453,6 +453,7 @@ shopify-cart::part(secondary-button) {
   text-shadow: 0 4px 16px rgba(0,0,0,0.8);
   font-size: 36px;
   letter-spacing: -2px;
+  text-align: center;
 }
 
 .scroll-track-container {
