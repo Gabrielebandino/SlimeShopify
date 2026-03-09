@@ -366,6 +366,80 @@ shopify-cart::part(secondary-button) {
   }
 }
 
+/* Horizontal Scroll Grids (Homepage) */
+.scroll-track-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  /* Hide scrollbar for a cleaner look */
+  scrollbar-width: none;
+  padding: 16px 0 32px 16px;
+}
+
+.scroll-track-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-track-inner {
+  display: flex;
+  gap: 12px;
+  padding-right: 16px; /* End padding so the last card doesn't hit the screen edge */
+  width: max-content;
+}
+
+/* The jiggle animation when scrolling into view */
+@keyframes swipeHintJiggle {
+  0%   { transform: translateX(0); }
+  15%  { transform: translateX(-35px); }
+  35%  { transform: translateX(15px); }
+  55%  { transform: translateX(-10px); }
+  75%  { transform: translateX(5px); }
+  100% { transform: translateX(0); }
+}
+
+.scroll-track-inner.jiggle {
+  animation: swipeHintJiggle 0.8s cubic-bezier(0.25, 1, 0.5, 1) ease-in-out;
+}
+
+/* Cards inside scroll grids need fixed widths to be horizontally mapped */
+.scroll-card {
+  flex: 0 0 calc(100vw / 2.8); /* Maintain similar scale to the 3-col grid */
+  max-width: 160px;
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .scroll-track-container {
+    padding-left: max(16px, calc((100vw - 1200px) / 2 + 16px));
+  }
+  .scroll-card {
+    flex: 0 0 240px; 
+    max-width: none;
+  }
+}
+
+.view-all-card {
+  display: flex !important; /* Override standard product card flex-dir if needed */
+  background: rgba(18, 18, 18, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px dashed rgba(255, 255, 255, 0.4) !important;
+  box-shadow: none !important;
+  transition: transform 0.2s, background 0.2s !important;
+}
+
+.view-all-card::before, .view-all-card::after {
+  display: none !important;
+}
+
+.view-all-card:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  transform: scale(1.02);
+}
+
 /* Apple-style macOS Frosted Glass styling */
 .product-card {
   display: flex;
