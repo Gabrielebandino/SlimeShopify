@@ -89,8 +89,8 @@ function renderProductPage() {
   }
   
   titleContainer.innerHTML = `
-    <span class="product-title-main" style="display:block; font-family: 'Arial Black', Impact, sans-serif; font-size: 32px; font-style: italic; letter-spacing: -1px; text-transform: uppercase;">${mainTitle}</span>
-    ${subtitle ? `<span class="product-title-sub" style="display:block; font-size: 16px; font-weight: 500; font-style: italic; opacity: 0.8; margin-top: 4px;">"${subtitle}"</span>` : ''}
+    <span class="product-title-main">${mainTitle}</span>
+    ${subtitle ? `<span class="product-title-sub">"${subtitle}"</span>` : ''}
   `;
 
   document.getElementById('product-page-description').innerHTML = currentProduct.descriptionHtml;
