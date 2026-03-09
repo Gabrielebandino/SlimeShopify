@@ -592,9 +592,9 @@ shopify-cart::part(secondary-button) {
   border-radius: 8px;
   position: relative;
   z-index: 3;
-  /* Fades out the image on the left and right edges */
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  /* Fades out the image softly on all 4 edges */
+  -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+  mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
 }
 
 @media (min-width: 768px) {

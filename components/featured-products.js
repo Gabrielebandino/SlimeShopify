@@ -152,7 +152,7 @@ export function createFeaturedProducts() {
     cardsHtml += `
       <div class="product-card scroll-card view-all-card" data-price-tier="grey_green">
         <a href="${viewAllLink}" class="product-link" style="height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column;">
-          <h3 class="product-title-main" style="font-size: 24px;">Shop ${title}</h3>
+          <h3 class="product-title-main" style="font-size: clamp(16px, 4vw, 22px); text-align: center; text-wrap: balance; width: 90%;">Shop ${title}</h3>
           <p class="product-title-sub" style="margin-top: 8px;">View All →</p>
         </a>
       </div>
