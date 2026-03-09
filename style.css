@@ -256,10 +256,7 @@ shopify-cart::part(secondary-button) {
   height: 100vh;
   position: relative;
   overflow: hidden;
-  background-color: var(--secondary-black);
-  /* Liquid Glass Mask applied here to fade out the carousel smoothly */
-  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  background-color: transparent;
 }
 
 .liquid-glass-fade {
@@ -347,6 +344,8 @@ shopify-cart::part(secondary-button) {
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 .carousel-overlay {
@@ -354,6 +353,8 @@ shopify-cart::part(secondary-button) {
   top: 0; left: 0; right: 0; bottom: 0;
   background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 50%);
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
 }
 
 .carousel-content {
@@ -444,8 +445,8 @@ shopify-cart::part(secondary-button) {
 .horizontal-scroll-section {
   position: relative;
   z-index: 5; /* Sit above the aurora */
-  margin-top: 100px !important; /* Huge luxurious spacing */
-  margin-bottom: 120px !important;
+  margin-top: 40px !important;
+  margin-bottom: 60px !important;
 }
 
 .horizontal-scroll-section .section-title {
