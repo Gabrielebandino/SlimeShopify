@@ -1331,7 +1331,7 @@ shopify-variant-selector::part(label) {
   letter-spacing: -2px;
   text-transform: uppercase;
   color: #ff3366; /* Vibrant solid peach/pink */
-  text-shadow: 3px 3px 0px rgba(0, 255, 255, 0.9), -3px -3px 0px rgba(245, 224, 39, 0.9);
+  text-shadow: 0 4px 20px rgba(255, 51, 102, 0.6), 0 2px 4px rgba(0,0,0,0.8);
   line-height: 1.1;
   white-space: nowrap;
   overflow: hidden;
@@ -1469,7 +1469,7 @@ shopify-variant-selector::part(label) {
   line-height: 1.1;
   display: inline-block;
   color: var(--tier-primary, #3fd46b); /* Solid dynamic tier color */
-  text-shadow: 2px 2px 0px rgba(255, 0, 128, 0.9), -2px -2px 0px rgba(0, 255, 255, 0.9);
+  text-shadow: 0 4px 20px var(--tier-glow, rgba(63, 212, 107, 0.6)), 0 2px 4px rgba(0,0,0,0.8);
   padding-right: 6px; /* prevents overlapping shadow cutoff */
   padding-bottom: 6px;
 }
