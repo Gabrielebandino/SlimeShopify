@@ -455,6 +455,10 @@ shopify-cart::part(secondary-button) {
   font-size: 36px;
   letter-spacing: -2px;
   text-align: center;
+  text-decoration: underline;
+  text-underline-offset: 12px;
+  text-decoration-thickness: 3px;
+  text-decoration-color: var(--primary-color);
 }
 
 .scroll-track-container {
@@ -592,9 +596,15 @@ shopify-cart::part(secondary-button) {
   border-radius: 8px;
   position: relative;
   z-index: 3;
-  /* Fades out the image softly on all 4 edges */
-  -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
-  mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+  /* Intersects horizontal and vertical linear gradients for a squared 4-edge fade */
+  -webkit-mask-image: 
+    linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  mask-image: 
+    linear-gradient(to bottom, transparent 0%, black 15%, black 85%, transparent 100%),
+    linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 @media (min-width: 768px) {
