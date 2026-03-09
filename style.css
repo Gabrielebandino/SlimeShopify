@@ -267,11 +267,11 @@ shopify-cart::part(secondary-button) {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 25vh;
+  height: 20vh;
   /* Authentic Liquid Glass Progressive Blur via masking the filter itself */
   background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(20,20,20,0.1) 50%, rgba(0,0,0,0.8) 100%);
-  backdrop-filter: blur(24px) saturate(140%);
-  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
   mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
   pointer-events: none;
@@ -364,6 +364,7 @@ shopify-cart::part(secondary-button) {
   text-align: center;
   color: #fff;
   width: 90%;
+  z-index: 20;
 }
 
 .carousel-headline {
@@ -384,6 +385,7 @@ shopify-cart::part(secondary-button) {
   border-radius: 30px;
   text-transform: uppercase;
   transition: transform 0.2s, background-color 0.2s;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
 }
 
 .carousel-cta:hover {
@@ -398,6 +400,7 @@ shopify-cart::part(secondary-button) {
   transform: translateX(-50%);
   display: flex;
   gap: 12px;
+  z-index: 20;
 }
 
 .indicator {
@@ -407,6 +410,7 @@ shopify-cart::part(secondary-button) {
   border-radius: 50%;
   padding: 0;
   transition: background-color 0.3s;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .indicator.active {
