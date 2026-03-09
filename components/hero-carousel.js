@@ -1,5 +1,8 @@
 export function createHeroCarousel() {
   const carouselHTML = `
+    <!-- Liquid Aurora Background -->
+    <div class="liquid-aurora-bg"></div>
+
     <section class="hero-carousel" id="hero-carousel">
       <div class="carousel-track" id="carousel-track">
         
@@ -40,6 +43,9 @@ export function createHeroCarousel() {
         <button class="indicator"></button>
         <button class="indicator"></button>
       </div>
+      
+      <!-- Explicit Liquid Glass Fade overlay at the bottom -->
+      <div class="liquid-glass-fade"></div>
     </section>
   `;
 

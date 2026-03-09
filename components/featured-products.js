@@ -124,7 +124,7 @@ export function createFeaturedProducts() {
     `;
 
     const sectionHTML = `
-      <section class="horizontal-scroll-section" style="margin-top: 64px; margin-bottom: 64px; overflow: hidden;">
+      <section class="horizontal-scroll-section" style="overflow: hidden;">
         <div class="container" style="padding: 0 16px;">
           <h2 class="section-title">${title}</h2>
         </div>

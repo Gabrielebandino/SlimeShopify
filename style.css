@@ -17,7 +17,7 @@ body {
   font-style: normal;
   margin: 0;
   padding: 0;
-  background-color: var(--secondary-white);
+  background-color: var(--secondary-black); /* Set to black to let aurora shine */
   color: var(--secondary-black);
   overflow-x: hidden;
 }
@@ -257,6 +257,73 @@ shopify-cart::part(secondary-button) {
   position: relative;
   overflow: hidden;
   background-color: var(--secondary-black);
+  /* Liquid Glass Mask applied here to fade out the carousel smoothly */
+  -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+}
+
+.liquid-glass-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 25vh;
+  background: linear-gradient(to bottom, transparent, rgba(15, 17, 16, 0.5));
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* Luxury Liquid Aurora Background */
+.liquid-aurora-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: var(--secondary-black);
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.liquid-aurora-bg::before,
+.liquid-aurora-bg::after {
+  content: "";
+  position: absolute;
+  width: 150vw;
+  height: 150vh;
+  top: -25vh;
+  left: -25vw;
+  background-image: 
+    radial-gradient(circle at 15% 50%, rgba(139, 99, 255, 0.4), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(255, 114, 182, 0.4), transparent 50%),
+    radial-gradient(circle at 50% 80%, rgba(63, 212, 107, 0.3), transparent 60%);
+  filter: blur(80px);
+  animation: liquidAurora 20s infinite alternate ease-in-out;
+  opacity: 0.8;
+  mix-blend-mode: screen;
+}
+
+.liquid-aurora-bg::after {
+  background-image: 
+    radial-gradient(circle at 80% 80%, rgba(139, 99, 255, 0.3), transparent 50%),
+    radial-gradient(circle at 20% 20%, rgba(63, 212, 107, 0.4), transparent 60%);
+  animation: liquidAurora 25s infinite alternate-reverse ease-in-out;
+  animation-delay: -5s;
+}
+
+@keyframes liquidAurora {
+  0% {
+    transform: rotate(0deg) scale(1) translate(0, 0);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1) translate(10%, 10%);
+  }
+  100% {
+    transform: rotate(360deg) scale(1) translate(-10%, -10%);
+  }
 }
 
 .carousel-track {
@@ -367,6 +434,20 @@ shopify-cart::part(secondary-button) {
 }
 
 /* Horizontal Scroll Grids (Homepage) */
+.horizontal-scroll-section {
+  position: relative;
+  z-index: 5; /* Sit above the aurora */
+  margin-top: 100px !important; /* Huge luxurious spacing */
+  margin-bottom: 120px !important;
+}
+
+.horizontal-scroll-section .section-title {
+  color: #fff;
+  text-shadow: 0 4px 16px rgba(0,0,0,0.8);
+  font-size: 36px;
+  letter-spacing: -2px;
+}
+
 .scroll-track-container {
   width: 100%;
   overflow-x: auto;
