@@ -65,6 +65,41 @@ export function createFeaturedProducts() {
         renderSection('Featured', featured, '/shop.html?collection=featured');
       }
 
+      // Append Luxurious Liquid Glass Footer directly in JS
+      const footerHTML = `
+        <footer class="luxurious-footer">
+          <div class="footer-content container">
+            <div class="footer-brand">
+              <h2 class="footer-logo">SLIME</h2>
+              <p class="footer-tagline">Premium Resell & Curated Artifacts.</p>
+            </div>
+            <div class="footer-links">
+              <div class="footer-column">
+                <h4>Shop</h4>
+                <a href="/shop.html?collection=new-arrivals">New Arrivals</a>
+                <a href="/shop.html?collection=sneakers">Sneakers</a>
+                <a href="/shop.html?collection=chrome-hearts">Chrome Hearts</a>
+                <a href="/shop.html?collection=featured">Featured</a>
+              </div>
+              <div class="footer-column">
+                <h4>Information</h4>
+                <a href="/appointment.html">Book Appointment</a>
+                <a href="#">Authenticity Guarantee</a>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">Contact Us</a>
+              </div>
+            </div>
+          </div>
+          <div class="footer-bottom">
+            <p>&copy; 2026 SLIME Resell. All rights reserved.</p>
+          </div>
+        </footer>
+      `;
+      const app = document.getElementById('app');
+      if (app && window.location.pathname === '/') {
+        app.insertAdjacentHTML('beforeend', footerHTML);
+      }
+
     } catch (e) {
       console.error('Error fetching homepage products:', e);
     }

@@ -268,9 +268,12 @@ shopify-cart::part(secondary-button) {
   left: 0;
   right: 0;
   height: 25vh;
-  background: linear-gradient(to bottom, transparent, rgba(15, 17, 16, 0.5));
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  /* Authentic Liquid Glass Progressive Blur via masking the filter itself */
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(20,20,20,0.1) 50%, rgba(0,0,0,0.8) 100%);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 100%);
   pointer-events: none;
   z-index: 10;
 }
@@ -1054,4 +1057,101 @@ shopify-variant-selector::part(label) {
 
 .appointment-submit:hover {
   transform: scale(1.02);
+}
+/* Footer */
+.luxurious-footer {
+  position: relative;
+  z-index: 5;
+  margin-top: 80px;
+  background: rgba(15, 17, 16, 0.45);
+  backdrop-filter: blur(32px) saturate(150%);
+  -webkit-backdrop-filter: blur(32px) saturate(150%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -20px 60px rgba(0,0,0,0.4);
+  color: #fff;
+  padding: 80px 0 30px 0;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 60px;
+}
+
+.footer-brand {
+  flex: 1;
+  min-width: 250px;
+}
+
+.footer-logo {
+  font-family: inherit;
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  margin: 0 0 16px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #Bbf7d0 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-tagline {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  margin: 0;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+  flex-wrap: wrap;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.footer-column h4 {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  margin: 0 0 12px 0;
+  letter-spacing: 2px;
+}
+
+.footer-column a {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  transition: color 0.3s ease;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.footer-column a:hover {
+  color: var(--primary-color);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 30px;
+  text-align: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 1px;
+}
+
+@media (max-width: 768px) {
+  .footer-links {
+    gap: 40px;
+    width: 100%;
+    justify-content: space-between;
+  }
 }
