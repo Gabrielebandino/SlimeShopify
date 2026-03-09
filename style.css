@@ -1177,3 +1177,264 @@ shopify-variant-selector::part(label) {
     justify-content: space-between;
   }
 }
+
+/* ========================================================================= */
+/* NATIVE PRODUCT PAGE REVAMP - LIQUID GLASS AESTHETICS                      */
+/* ========================================================================= */
+
+.product-page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 5;
+  padding: 0 16px 60px 16px;
+}
+
+@media (min-width: 900px) {
+  .product-page-layout {
+    flex-direction: row;
+    gap: 40px;
+    align-items: flex-start;
+  }
+}
+
+/* LEFT SIDE: Media Gallery */
+.product-page-media-container {
+  width: 100%;
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.2),
+    0 20px 40px rgba(0,0,0,0.3);
+}
+
+@media (min-width: 900px) {
+  .product-page-media-container {
+    flex: 1.2;
+    position: sticky;
+    top: 100px;
+  }
+}
+
+.product-media-gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+}
+
+.product-media-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.product-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.product-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+}
+
+.product-media-indicators {
+  position: absolute;
+  bottom: 24px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.slide-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.slide-indicator.active {
+  background: #fff;
+  transform: scale(1.3);
+  box-shadow: 0 0 10px rgba(255,255,255,0.8);
+}
+
+/* RIGHT SIDE: Details & Glass Panel */
+.product-page-details-container {
+  width: 100%;
+  padding: 0;
+}
+
+@media (min-width: 900px) {
+  .product-page-details-container {
+    flex: 1;
+  }
+}
+
+.product-glass-panel {
+  position: relative;
+  padding: 32px;
+  border-radius: 24px;
+  color: #fff;
+  /* Authentic Frosted Lens base */
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.02) 40%, rgba(255, 255, 255, 0.0) 60%, rgba(255, 255, 255, 0.07) 100%);
+  backdrop-filter: blur(32px) saturate(160%);
+  -webkit-backdrop-filter: blur(32px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    inset 0 1px 2px rgba(255, 255, 255, 0.4),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.1),
+    0 20px 40px rgba(0,0,0,0.4);
+  transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.product-page-title {
+  margin: 0 0 16px 0;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-page-price {
+  font-family: 'Space Mono', 'Courier New', monospace;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 32px;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.1));
+}
+
+/* Variant Pills */
+.product-page-variants {
+  margin-bottom: 32px;
+}
+
+.variant-pill-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.variant-pill {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  flex: 1 1 auto;
+  text-align: center;
+  min-width: 100px;
+}
+
+.variant-pill:hover:not(.disabled) {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.variant-pill.selected {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+
+.variant-pill.sold-out {
+  opacity: 0.3;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+/* Description */
+.product-page-description {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 32px;
+}
+
+.product-page-description strong {
+  color: #fff;
+}
+
+/* Custom Add To Cart */
+.custom-add-to-cart {
+  width: 100%;
+  background: var(--primary-color);
+  color: #000;
+  border: none;
+  padding: 18px;
+  border-radius: 16px;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 8px 30px rgba(187, 247, 208, 0.3);
+}
+
+.custom-add-to-cart:hover:not(.disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(187, 247, 208, 0.5);
+  filter: brightness(1.1);
+}
+
+.custom-add-to-cart.disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.3);
+  box-shadow: none;
+  cursor: not-allowed;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Let the glass panel react to price tiers just like the cards! */
+.product-glass-panel[data-price-tier="grey_green"] { box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -1px 2px rgba(255,255,255,0.1), 0 0 40px rgba(187, 247, 208, 0.1); border-color: rgba(187, 247, 208, 0.3); }
+.product-glass-panel[data-price-tier="pale_green"] { box-shadow: inset 0 1px 2px rgba(255,255,255,0.4), inset 0 -1px 2px rgba(255,255,255,0.1), 0 0 50px rgba(134, 239, 172, 0.15); border-color: rgba(134, 239, 172, 0.4); }
+.product-glass-panel[data-price-tier="vivid_green"] { box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -1px 2px rgba(255,255,255,0.15), 0 0 60px rgba(74, 222, 128, 0.2); border-color: rgba(74, 222, 128, 0.5); }
+.product-glass-panel[data-price-tier="pink"] { box-shadow: inset 0 1px 2px rgba(255,255,255,0.5), inset 0 -1px 2px rgba(255,255,255,0.15), 0 0 60px rgba(244, 114, 182, 0.2); border-color: rgba(244, 114, 182, 0.5); }
+.product-glass-panel[data-price-tier="purple"] { box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), inset 0 -1px 2px rgba(255,255,255,0.2), 0 0 70px rgba(167, 139, 250, 0.25); border-color: rgba(167, 139, 250, 0.6); }
+.product-glass-panel[data-price-tier="red"] { box-shadow: inset 0 1px 2px rgba(255,255,255,0.6), inset 0 -1px 2px rgba(255,255,255,0.2), 0 0 80px rgba(248, 113, 113, 0.3); border-color: rgba(248, 113, 113, 0.7); }
+.product-glass-panel[data-price-tier="gold"] { box-shadow: inset 0 1px 2px rgba(255,255,255,0.7), inset 0 -1px 2px rgba(255,255,255,0.3), 0 0 100px rgba(250, 204, 21, 0.35); border-color: rgba(250, 204, 21, 0.8); }
+
+.product-glass-panel[data-price-tier="grey_green"] .price-amount { background: linear-gradient(135deg, var(--grey-green) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+.product-glass-panel[data-price-tier="pale_green"] .price-amount { background: linear-gradient(135deg, var(--pale-green) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+.product-glass-panel[data-price-tier="vivid_green"] .price-amount { background: linear-gradient(135deg, var(--vivid-green) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+.product-glass-panel[data-price-tier="pink"] .price-amount { background: linear-gradient(135deg, var(--pink) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+.product-glass-panel[data-price-tier="purple"] .price-amount { background: linear-gradient(135deg, var(--purple) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+.product-glass-panel[data-price-tier="red"] .price-amount { background: linear-gradient(135deg, var(--red) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+.product-glass-panel[data-price-tier="gold"] .price-amount { background: linear-gradient(135deg, var(--gold) 0%, #fff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; display: inline-block; }
+

@@ -12,40 +12,43 @@
         <header id="main-header"></header>
 
         <main id="app">
-            <shopify-context type="product" handle="hoodie" id="main-product-context">
-                <template>
-                    <div class="product-page-layout">
-                        <!-- Left Side: Large image with gradient fade -->
-                        <div class="product-page-media-container">
-                            <div class="product-page-media-fade"></div>
-                            <shopify-media width="800" height="800" query="product.selectedOrFirstAvailableVariant.image"></shopify-media>
-                        </div>
+            <!-- Liquid Aurora Background -->
+            <div class="liquid-aurora-bg"></div>
 
-                        <!-- Right Side: Details -->
-                        <div class="product-page-details-container container">
-                            <h1 class="product-page-title">
-                                <shopify-data query="product.title"></shopify-data>
-                            </h1>
-                            <div class="product-page-price">
-                                <shopify-money query="product.selectedOrFirstAvailableVariant.price"></shopify-money>
-                            </div>
-                            
-                            <div class="product-page-description">
-                                <shopify-data query="product.descriptionHtml"></shopify-data>
-                            </div>
-
-                            <div class="product-page-variants">
-                                <shopify-variant-selector></shopify-variant-selector>
-                            </div>
-
-                            <button class="product-add-to-cart" onclick="document.getElementById('main-cart').addLine(event).showModal();" shopify-attr--disabled="!product.selectedOrFirstAvailableVariant.availableForSale">
-                                Add to Cart
-                            </button>
-                        </div>
+            <div id="product-loading" style="height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Inter'; color: #fff;">
+                Loading exclusive details...
+            </div>
+            
+            <div id="product-page-layout" class="product-page-layout" style="display: none; padding-top: 80px;">
+                <!-- Left Side: Swipeable Image Gallery -->
+                <div class="product-page-media-container">
+                    <div class="product-page-media-fade"></div>
+                    <div id="product-media-gallery" class="product-media-gallery">
+                        <!-- JS injected slider images go here -->
                     </div>
-                </template>
-                <div shopify-loading-placeholder style="height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Inter';">Loading product details...</div>
-            </shopify-context>
+                    <div id="product-media-indicators" class="product-media-indicators"></div>
+                </div>
+
+                <!-- Right Side: Details Panel -->
+                <div class="product-page-details-container container">
+                    <!-- Liquid Glass Shell for Text content -->
+                    <div class="product-glass-panel">
+                        <h1 class="product-page-title" id="product-page-title"></h1>
+                        <div class="product-page-price" id="product-page-price"></div>
+                        
+                        <div class="product-page-variants" id="product-page-variants-container">
+                            <h3 style="font-size: 14px; font-weight: 700; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 12px; letter-spacing: 1px;">Select Variant</h3>
+                            <div id="product-variant-pills" class="variant-pill-grid"></div>
+                        </div>
+
+                        <div class="product-page-description" id="product-page-description"></div>
+
+                        <button class="product-add-to-cart custom-add-to-cart disabled" id="product-add-to-cart" disabled>
+                            Select Size
+                        </button>
+                    </div>
+                </div>
+            </div>
         </main>
         
     </shopify-store>
