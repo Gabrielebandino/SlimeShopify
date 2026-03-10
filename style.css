@@ -1322,7 +1322,7 @@ shopify-variant-selector::part(label) {
   flex-direction: column;
 }
 
-.product-title-main {
+#product-page-title .product-title-main {
   display: block;
   font-family: 'Arial Black', Impact, sans-serif;
   font-size: 42px;
@@ -1340,7 +1340,7 @@ shopify-variant-selector::part(label) {
   padding-bottom: 6px;
 }
 
-.product-title-sub {
+#product-page-title .product-title-sub {
   display: block;
   font-family: 'Inter', sans-serif;
   font-size: 16px;
